@@ -84,21 +84,21 @@
                           <div class="col-sm-10">
                             <div class="form-check">
                               <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                                value="option1" checked />
+                                value="Male"  />
                               <label class="form-check-label" for="gridRadios1">
                                 Male
                               </label>
                             </div>
                             <div class="form-check">
                               <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                                value="option2" />
+                                value="Female"  />
                               <label class="form-check-label" for="gridRadios2">
                                 Female
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                                value="option2" />
+                              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
+                                value="Unspecified"  />
                               <label class="form-check-label" for="gridRadios2">
                                 Unspecified
                               </label>
@@ -136,12 +136,11 @@
                           <div class="col-md-11">
                             <div class="form-group">
                               <label for="inputState">Nationality</label>
-                              <select id="nationality-001a" class="form-control" >
+                              <select id="nationality-001a" class="form-control nationality" >
                                 <option selected>Choose...</option>
                                 <option>...</option>
-                                <option>Nigeria</option>
-                                <option>Ghana</option>
-                                <option>Kenya</option>
+                                <option ></option>
+                                <option value="ooo"></option>
                               </select>
                             </div>
                           </div>
@@ -162,9 +161,8 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="inputState">Country of Residence</label>
-                            <select id="countryR" class="form-control" >
-                              <option selected>Choose...</option>
-                              <option>...</option>
+                            <select id="countryR" class="form-control countryR" >
+                              <option selected>Select Country</option>
                             </select>
                           </div>
                         </div>
@@ -797,6 +795,10 @@
   <!-- form wizard -->
   <script src="dist/plugins/formwizard/jquery-steps.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+
+  <!-- <script type="module" src="module.js"></script> -->
+
+  <script src="./dist/js/data.js"></script>
 
   <script src="./dist/js/main.js"></script>
 

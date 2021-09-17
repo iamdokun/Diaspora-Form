@@ -1,3 +1,5 @@
+// import {getNationality} from './data.js'
+
 // Selecting buttons that add more input fields
 const firstDegreeBtn = document.querySelector("#first-degree-add-more");
 const secondDegreeBtn = document.querySelector("#second-degree-add-more");
@@ -168,7 +170,7 @@ function nationalityFunc() {
   nationalityRow.innerHTML = `<div class="col-md-11">
                         <div class="form-group" id='too'>
                           <label for="inputState">Nationality</label>
-                          <select id="${counter}" class="form-control" >
+                          <select id="${counter}" class="form-control nationality" >
                             <option selected>Choose...</option>
                             <option>...</option>
                             <option>Nigeria</option>
@@ -193,6 +195,7 @@ function nationalityFunc() {
 
   const deletNationality = document.querySelectorAll(".delete-nationality");
   newDeleteNationality = [...deletNationality]
+
 }
 let newDeleteNationality = [];
 
@@ -271,8 +274,11 @@ newfIntution = [...fInstituteInput]
   newfStartDate = [...fStartDate];
 
   const fEndDate = document.querySelectorAll(".fend-date");
-  newEndDate = [...fEndDate];
+  newfEndDate = [...fEndDate];
+  
+ 
 }
+
 let newDeleteFD = [];
 let newfDegreeInput = [];
 let newfIntution = []
@@ -711,29 +717,125 @@ function refereeFunc() {
                           Form Data Collection
   ==================================================================
 */
-const surName = document.getElementById("surname").value;
-const firstName = document.getElementById("firstname").value;
-const otherName = document.getElementById("other-name").value;
-const gender = document.getElementById("gender").value;
-const surName2 = document.getElementById("surname2").value;
-const firstName2 = document.getElementById("firstname2").value;
-const otherName2 = document.getElementById("othername2").value;
+const surName = document.getElementById("surname");
+const firstName = document.getElementById("firstname");
+const otherName = document.getElementById("other-name");
+const gender = document.getElementById("gender");
+const surName2 = document.getElementById("surname2");
+const firstName2 = document.getElementById("firstname2");
+const otherName2 = document.getElementById("othername2");
+const countryOfResidenceValue = document.getElementsByClassName("countryR");
+const pAddress = document.getElementById("permanent-address");
+const phoneNumber = document.getElementById("phone-number");
+
+
 
 
   let tempFDegree = [];
+ 
+  
+const radioBtn = () => {
+  let genderValue;
+  if (document.getElementById("gridRadios1").checked) {
+    genderValue = document.getElementById("gridRadios1").value;
+    return genderValue;
+  } else if (document.getElementById("gridRadios2").checked) {
+    genderValue = document.getElementById("gridRadios2").value;
+    return genderValue;
+  } else {
+    genderValue = document.getElementById("gridRadios3").value;
+    return genderValue;
+  }
+  // console.log(genderValue);
+};
 
 // Submit form
 const SubmitFormHandler = () => {
+  console.log(countryOfResidenceValue.value);
   const formValues = {
+    name1: {
+      surName: surName.value,
+      firstName: firstName.value,
+      otherName: otherName.value,
+    },
+    gender: radioBtn(),
+    name2: {
+      surName: surName2.value,
+      firstName: firstName2.value,
+      otherName: otherName2.value,
+    },
+    countryOfResidence: countryOfResidenceValue[0].value,
+    parmanentAddress: pAddress.value,
+    phoneNumber: phoneNumber.value,
     nationalityValues: [],
-    firstDegreeValues: [
+    firstDegreeValues: [],
+    secondDegreeValues: [
       {
-        degree: '',
-        institute: '',
-        startDate: '',
-        endDate: ''
-      }
+        degree: "",
+        institute: "",
+        startDate: "",
+        endDate: "",
+      },
     ],
+    phdValues: [
+      {
+        degree: "",
+        institute: "",
+        startDate: "",
+        endDate: "",
+      },
+    ],
+    intrestedCourse: [],
+    prefferedIntitution: [],
+    certificate: [
+      {
+        title: "",
+        year: "",
+      },
+    ],
+    researchExperience: [
+      {
+        institution: "",
+        advisorName: "",
+        startDate: "",
+        endDate: "",
+      },
+    ],
+    honorsAward: [
+      {
+        titleOfAward: "",
+        titleOfFellowship: "",
+        titleOfGrant: "",
+        date: "",
+      },
+    ],
+    currentEmployment: [
+      {
+        employer: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+      },
+    ],
+    previousEmployment: [
+      {
+        employer: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+      },
+    ],
+    referee: [
+      {
+        firstName: "",
+        LlastName: "",
+        email: "",
+        phoneNumber: "",
+        address: "",
+      },
+    ],
+    wesAiea: [],
+    passport: [],
   };
 
   // Get Nationality Input Values
@@ -742,76 +844,85 @@ const SubmitFormHandler = () => {
     return formValues.nationalityValues.push(values);
   });
 
-  // Get First-Degree Input Values
-  // extraField.firstDegree[0].map((item) => {
-  //   const values = document.getElementById(item).value;
-  //   return console.log(tempFDegree.push(values));
-  // });
+  // ===================================================
+  // let firstDegreeValues = [];
+  // for (let index = 0; index < extraField.firstDegree.length; index++) {
 
-  let firstDegreeValues = [];
-  for (let index = 0; index < extraField.firstDegree.length; index++) {
-     
-     extraField.firstDegree[index].map((item) => {
-       const values = document.getElementById(item).value;
-      //  return console.log(tempFDegree.push(values));
-      tempFDegree[extraField.firstDegree[index].indexOf(item)]
+  //    extraField.firstDegree[index].map((item) => {
+  //      const values = document.getElementById(item).value;
+  //     //  return console.log(tempFDegree.push(values));
+  //     tempFDegree[extraField.firstDegree[index].indexOf(item)]
 
-      console.log(extraField.firstDegree[index].indexOf(item));
+  //     console.log(extraField.firstDegree[index].indexOf(item));
 
-     
-      switch (index) {
-        case 0:
-          // firstDegreeValues[
-          //   extraField.firstDegree[index].indexOf(item)
-          // ].degree = values;
-          firstDegreeValues.push({'degree': values, 'institution': , 'startDate','endDate'})
-          break;
-        case 1:
-           firstDegreeValues[
-             extraField.firstDegree[index].indexOf(item)
-           ].degree = values;
-          break;
-        case 2:
-           firstDegreeValues[
-             extraField.firstDegree[index].indexOf(item)
-           ].degree = values;
-          break;
-        case 3:
-           firstDegreeValues[
-             extraField.firstDegree[index].indexOf(item)
-           ].degree = values;
-          break;
-      
-      
-        default:
-          break;
-      }
+  //     switch (index) {
+  //       case 0:
+  //         // firstDegreeValues[
+  //         //   extraField.firstDegree[index].indexOf(item)
+  //         // ].degree = values;
+  //         firstDegreeValues.push({'degree': values, 'institution': , 'startDate','endDate'})
+  //         break;
+  //       case 1:
+  //          firstDegreeValues[
+  //            extraField.firstDegree[index].indexOf(item)
+  //          ].degree = values;
+  //         break;
+  //       case 2:
+  //          firstDegreeValues[
+  //            extraField.firstDegree[index].indexOf(item)
+  //          ].degree = values;
+  //         break;
+  //       case 3:
+  //          firstDegreeValues[
+  //            extraField.firstDegree[index].indexOf(item)
+  //          ].degree = values;
+  //         break;
 
-      console.log(values, index, item, firstDegreeValues);
-     });
+  //       default:
+  //         break;
+  //     }
 
-  }
-  // extraField.firstDegree[1].map(item => {
-  //   const values = document.getElementById(item).value;
-  //   return console.log(tempFDegree.push(values));
-  // });
+  //     console.log(values, index, item, firstDegreeValues);
+  //    });
 
-  // extraField.firstDegree[2].map(item => {
-  //   const values = document.getElementById(item).value;
-  //   return console.log(tempFDegree.push(values));
-  // })
-
-  // extraField.firstDegree[3].map(item => {
-  //   const values = document.getElementById(item).value;
-  //   return console.log(tempFDegree.push(values));
-  // })
+  // }
+  // =======================================================
 
   // Get First-Degree Input Values
+  extraField.firstDegree[0].map((item) => {
+    const values = document.getElementById(item).value;
 
-  // console.log("After submit : ", formValues.firstDegreeValues);
+    return console.log(tempFDegree.push(["degree", values]));
+  });
+  console.log("tempFDegree value oustside: ", tempFDegree);
+
+  extraField.firstDegree[1].map((item) => {
+    const values = document.getElementById(item).value;
+    return console.log(tempFDegree.push(["institution", values]));
+  });
+
+  extraField.firstDegree[2].map((item) => {
+    const values = document.getElementById(item).value;
+    return console.log(tempFDegree.push(["startDate", values]));
+  });
+
+  extraField.firstDegree[3].map((item) => {
+    const values = document.getElementById(item).value;
+    return console.log(tempFDegree.push(["endDate", values]));
+  });
+
+  console.log("Before convert to OBJ: ", tempFDegree);
+
+  const obj = [Object.fromEntries(tempFDegree)];
+
+  console.log("Before push OBJ: ", obj);
+  formValues.firstDegreeValues.push(obj);
+  // Get First-Degree Input Values
+
+  console.log("After submit : ", formValues);
   console.log("After submit : ", tempFDegree);
 
- 
+  // tempFDegree = [];
 };
 const Submit = document.getElementById("submit");
 Submit.addEventListener("click", SubmitFormHandler);
