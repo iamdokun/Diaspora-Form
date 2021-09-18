@@ -21,14 +21,19 @@ const getCountryOfRes = async() => {
 getCountryOfRes();
 
 
-const getNationality = async() => {
-    const res = await fetch("https://countriesnow.space/api/v0.1/countries");
-    const data = await res.json();
-    console.log(countryOfResidence);
-    data.data.forEach(item => {
-
-    })
-}
-getNationality()
+// const getNationality = async() => {
+//     const res = await fetch("https://countriesnow.space/api/v0.1/countries");
+//     const data = await res.json();
+//     console.log(countryOfResidence);
+//     data.data.forEach(item => {
+//         // for (let i = 0; i < countryOfResidence.length; i++) {
+//         //   const element = countryOfResidence[i];
+//         //   const optElement = document.createElement("option");
+//         //   optElement.setAttribute("value", item.country);
+//         //   return element.appendChild(optElement);
+//         // }
+//     })
+// }
+// getNationality()
 
 

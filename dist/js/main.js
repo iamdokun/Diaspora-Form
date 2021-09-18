@@ -196,6 +196,7 @@ function nationalityFunc() {
   const deletNationality = document.querySelectorAll(".delete-nationality");
   newDeleteNationality = [...deletNationality]
 
+  // getNationality();
 }
 let newDeleteNationality = [];
 
@@ -839,6 +840,7 @@ const SubmitFormHandler = () => {
   };
 
   // Get Nationality Input Values
+  
   extraField.nationality.map((item) => {
     const values = document.getElementById(item).value;
     return formValues.nationalityValues.push(values);
@@ -933,3 +935,36 @@ Submit.addEventListener("click", SubmitFormHandler);
 //       institution: tempFDegree[1],
 //     };
 //   };
+
+// const getNationality = async () => {
+//   const res = await fetch("https://countriesnow.space/api/v0.1/countries");
+//   const data = await res.json();
+//   data.data.forEach(itemC => {
+     
+//   });
+// };
+
+
+// extraField.nationality.forEach((item) => {
+//   const selectElement = document.getElementById(item);
+  
+//   console.log(selectElement);
+//   // console.log(optElement);
+
+  
+// return selectElement;
+  
+// });
+// const getNationality = async (count) => {
+//   const res = await fetch("https://countriesnow.space/api/v0.1/countries");
+//   const data = await res.json();
+//   data.data.forEach((itemC) => {
+//     const optElement = document.createElement("option");
+//     optElement.setAttribute("value", itemC.country);
+//     console.log(count);
+//     return count.appendChild(optElement);
+//   });
+// };
+// getNationality(selectElement);
+
+
