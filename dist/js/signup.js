@@ -25,25 +25,28 @@ document.getElementById("confirm-password").value = '';
 }
 
 
-const viewPassword = () => {
-    
-   let password = document.getElementById('password')
-   
-    if (password.type === "password") {
-        password.type = "text"
-        
-    } else { password.type = 'password' }
-   
-  
-}
-const viewConfirmPassword = () => {
-    
-   let confrimPassword = document.getElementById('confirm-password')
-   
-    if (confrimPassword.type === "password") {
-        confrimPassword.type = "text"
-        
-    } else { confrimPassword.type = 'password' }
-   
-  
-}
+const togglePassword = document.getElementById("toggle-password");
+const password = document.getElementById("password");
+
+togglePassword.addEventListener("click", function (e) {
+  if (password.type === "password") {
+    password.type = "text";
+  } else {
+    password.type = "password";
+  }
+  this.classList.toggle("fa-eye-slash");
+});
+
+const toggleConfirmPassword = document.getElementById(
+  "toggle-confirm-password"
+);
+const confirmPassword = document.getElementById("confirm-password");
+
+toggleConfirmPassword.addEventListener("click", function (e) {
+  if (confirmPassword.type === "password") {
+    confirmPassword.type = "text";
+  } else {
+    confirmPassword.type = "password";
+  }
+  this.classList.toggle("fa-eye-slash");
+});

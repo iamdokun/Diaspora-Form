@@ -38,7 +38,7 @@ body {
 	font-family: 'Poppins', sans-serif;
 	font-weight: 400;
 	overflow-x: hidden;
-	overflow-y: auto;
+	/* overflow-y: hidden; */
 	font-size: 15px;
 	color: #666f73;
 }
@@ -75,6 +75,13 @@ body {
 .layout-top-nav .content-wrapper, .layout-top-nav .main-footer {
 	margin-left: 0
 }
+
+.fa-eye {
+  position: absolute;
+  top: 13px;
+  right: 22px;
+}
+
 a {
 	transition: all 0.3s ease-out 0s;
 }
@@ -1676,7 +1683,7 @@ opacity:1
 	box-shadow: none;
 	border: 0;
 	border-bottom: solid 1px #d9d9d9;
-	font-size: 16px;
+	font-size: 12px;
 	font-family: 'Poppins', sans-serif;
 	padding: 10px 0;
 }
@@ -4167,12 +4174,14 @@ table.text-center, table.text-center td, table.text-center th {
 	color: #444
 }
 .login-page, .register-page {
-	background: url(../img/body-bg.jpg) no-repeat center top;
+	background: url(../img/backgroundbg.jpg) no-repeat center top;
+
 	background-size: cover;
 }
 .login-page.sty1, .register-page.sty1 {
-	background: url(../img/body-bg1.jpg) no-repeat center top;
-	background-size: cover;
+	background: url(../img/backgroundbg.jpg) no-repeat center top;
+  background-size: cover;
+	
 }
 .login-box, .register-box {
 	width: 400px;
@@ -4196,6 +4205,7 @@ table.text-center, table.text-center td, table.text-center th {
 	border-top: 0;
 	color: #666;
 	border-radius: 7px;
+	font-size: 14px;
 }
 .login-box-body.sty1, .register-box-body.sty1 {
 	border-radius: 0px;
