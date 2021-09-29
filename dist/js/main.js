@@ -719,6 +719,60 @@ End: Delete Functions for Reffrence Info
 ================================================
 */
 
+/*
+================================================
+Start: Delete Functions for WesAieaInput
+================================================
+*/
+function deleteWesAiea(e) {
+  const btnId = document.getElementById(e.id);
+  btnId.parentElement.parentElement.parentElement.remove();
+
+  // 
+  const wesAieaArr = extraField.wesAiea;
+  let wesAieaInput;
+  newWesAieaInput.map((item) => {
+    wesAieaInput = item.id;
+    return wesAieaInput;
+  });
+  const index = wesAieaArr.indexOf(wesAieaInput);
+  wesAieaArr.splice(index, 1);
+
+  console.log(extraField.wesAiea);
+}
+/*
+================================================
+End: Delete Functions for WesAieaInput
+================================================
+*/
+
+/*
+================================================
+Start: Delete Functions for Passport Input
+================================================
+*/
+function deletePassPort(e) {
+  const btnId = document.getElementById(e.id);
+  btnId.parentElement.parentElement.parentElement.remove();
+
+   // 
+  const passportArr = extraField.passport;
+  let passportInput;
+  newPassportInput.map((item) => {
+    passportInput = item.id;
+    return passportInput;
+  });
+  const index = passportArr.indexOf(passportInput);
+  passportArr.splice(index, 1);
+
+  console.log(extraField.passport);
+}
+/*
+================================================
+End: Delete Functions for Passport Input
+================================================
+*/
+
 
 
 function nationalityFunc() {
@@ -768,13 +822,7 @@ function firstDegreeFunc() {
                       <div class="col-md" >
                         <div class="form-group">
                           <label for="jobTitle1"></label>
-                          <select id="${degreeCounter}" class="form-control fdegree-input">
-                            <option selected>Degree</option>
-                            <option>...</option>
-                            <option>BSc</option>
-                            <option>BEng</option>
-                            <option>LLM</option>
-                          </select>
+                          <input type="text" id="${degreeCounter}" class="form-control fdegree-input" placeholder="BSc - Computer Engineering">
                         </div>
                       </div>
                       <div class="col-md">
@@ -854,10 +902,7 @@ function secondDegreeFunc() {
                       <div class="col-md">
                         <div class="form-group">
                           <label for="jobTitle1"></label>
-                          <select id="${degreeCounter}" class="form-control sDegree-input">
-                            <option selected>Degree</option>
-                            <option>...</option>
-                          </select>
+                          <input type="text" id="${degreeCounter}" class="form-control sDegree-input" placeholder="MSc - Computer Science">
                         </div>
                       </div>
                       <div class="col-md">
@@ -927,10 +972,7 @@ function phdFunc() {
                       <div class="col-md">
                         <div class="form-group">
                           <label for="jobTitle1"></label>
-                          <select id="${degreeCounter}" class="form-control pDegree-input">
-                            <option selected>Degree</option>
-                            <option>...</option>
-                          </select>
+                          <input type="text" id="${degreeCounter}" class="form-control pDegree-input" placeholder="PhD - Mathematics">
                         </div>
                       </div>
                       <div class="col-md">
@@ -1594,10 +1636,7 @@ function certficationFunc() {
   certficationRow.innerHTML = `<div class="col-md">
                         <div class="form-group">
                           <label for="inputState"></label>
-                          <select id="${tcertificateCounter}" class="form-control tCertificate-input">
-                            <option selected>Title of Certfication</option>
-                            <option>...</option>
-                          </select>
+                           <input type="text" id="${tcertificateCounter}" class="form-control tCertificate-input" placeholder="Title of Certfication">
                         </div>
                       </div>
                       <div class="col-md">
@@ -1774,10 +1813,7 @@ let endCounter = `ceEnd-${new Date().getMilliseconds()}`;
                       <div class="col-md">
                         <div class="form-group">
                           <label for="videoUrl1"></label>
-                          <select id="${roleCounter}" class="form-control cRole">
-                            <option selected>Role / Position</option>
-                            <option>...</option>
-                          </select>
+                           <input type="text" id="${roleCounter}" class="form-control cRole" placeholder="Role / Position">
                         </div>
                       </div>
                       <div class="col-md">
@@ -1835,16 +1871,13 @@ let endCounter = `peEnd-${new Date().getMilliseconds()}`;
                       <div class="col-md">
                         <div class="form-group">
                           <label for="current-employer"></label>
-                          <input class="form-control" id="${employerCounter}" type="text" name="current-employer" placeholder="Employer" />
+                          <input class="form-control pEmployer" id="${employerCounter}" type="text" name="current-employer" placeholder="Employer" />
                         </div>
                       </div>
                       <div class="col-md">
                         <div class="form-group">
                           <label for="videoUrl1"></label>
-                          <select id="${roleCounter}" class="form-control">
-                            <option selected>Role / Position</option>
-                            <option>...</option>
-                          </select>
+                          <input type="text" id="${roleCounter}" class="form-control pRole" placeholder="Role / Position">
                         </div>
                       </div>
                       <div class="col-md">
@@ -1852,11 +1885,11 @@ let endCounter = `peEnd-${new Date().getMilliseconds()}`;
                           <div class="row">
                             <div class="col-md">
                               <small for="videoUrl1">Start Date:</small>
-                              <input class="form-control" id="${startCounter}" name="jobTitle2" type="date">
+                              <input class="form-control peStart" id="${startCounter}" name="jobTitle2" type="date">
                             </div>
                             <div class="col-md">
                               <small for="videoUrl1">End Date:</small>
-                              <input class="form-control" id="${endCounter}" name="jobTitle2" type="date">
+                              <input class="form-control peEnd" id="${endCounter}" name="jobTitle2" type="date">
                             </div>
                           </div>
                         </div>
@@ -1875,13 +1908,13 @@ let endCounter = `peEnd-${new Date().getMilliseconds()}`;
   extraField.previousEmployment[2].push(startCounter);
   extraField.previousEmployment[3].push(endCounter);
 
-  const pEployerInput = document.querySelectorAll(".cEmployer");
+  const pEployerInput = document.querySelectorAll(".pEmployer");
   newpEployerInput = [...pEployerInput];
-  const pRoleInput = document.querySelectorAll(".cRole");
+  const pRoleInput = document.querySelectorAll(".pRole");
   newpRoleInput = [...pRoleInput];
-  const peStartInput = document.querySelectorAll(".ceStart");
+  const peStartInput = document.querySelectorAll(".peStart");
   newpeStartInput = [...peStartInput];
-  const peEndInput = document.querySelectorAll(".ceEnd");
+  const peEndInput = document.querySelectorAll(".peEnd");
   newpeEndInput = [...peEndInput];
 }
 let newpEployerInput = [];
@@ -1966,12 +1999,14 @@ let newrrAddressInput = [];
 
 
 function wesAieaFunc() {
+let wesAieaCounter = `wesAiea-${new Date().getMilliseconds()}`;
+
   let wesAieaRow = document.createElement("div");
   wesAieaRow.classList.add("row", "m-t-2");
   wesAieaRow.innerHTML = `  <div class="col-md">
                         <div class="form-group">
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input form-control" id="inputGroupFile02">
+                            <input type="file" class="custom-file-input form-control wesAieaInput" id="${wesAieaCounter}">
                             <label class="custom-file-label" for="inputGroupFile02">Document Upload</label>
                           </div>
                         </div>
@@ -1979,22 +2014,60 @@ function wesAieaFunc() {
                       <div class="col-md-1 d-flex justify-content-end align-items-center">
                         <div class="delete-btn-wrap form-group d-flex justify-content-center align-items-center m-t-1">
                           <label for="jobTitle1"></label>
-                          <button onClick='deleteFun(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
+                          <button onClick='deleteWesAiea(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
                         </div>
                       </div>`;
 
   wesAieaWrap.appendChild(wesAieaRow);
+
+  extraField.wesAiea.push(wesAieaCounter);
+
+  const wesAieaInput = document.querySelectorAll("wesAieaInput");
+  newWesAieaInput = [...wesAieaInput];
+
+  extraField.wesAiea.forEach((item) => {
+    console.log("wesAiea: ", item);
+    $(`#${item}`).on("change", function () {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next(".custom-file-label").html(fileName);
+    });
+  });
+
+  extraField.wesAiea.forEach((item) => {
+    console.log(item);
+
+    const input = document.querySelector(`#${item}`);
+    input.addEventListener("change", (e) => {
+      var file = e.target.files[0];
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        let image = e.target.result;
+        // console.log(image);
+        tempWESAIEA.push(image);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    return console.log(tempWESAIEA);
+  });
+
+  
+
 }
+let newWesAieaInput = [];
+
 
 function passportFunc() {
-
+let passportCounter = `passport-${new Date().getMilliseconds()}`;
 
   let passportRow = document.createElement("div");
   passportRow.classList.add("row", "m-t-2");
   passportRow.innerHTML = `  <div class="col-md">
                         <div class="form-group">
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input form-control" id="inputGroupFile02">
+                            <input type="file" class="custom-file-input form-control passportInput" id="${passportCounter}">
                             <label class="custom-file-label" for="inputGroupFile02">Image Upload</label>
                           </div>
                         </div>
@@ -2002,12 +2075,48 @@ function passportFunc() {
                       <div class="col-md-1 d-flex justify-content-end align-items-center">
                         <div class="delete-btn-wrap form-group d-flex justify-content-center align-items-center m-t-1">
                           <label for="jobTitle1"></label>
-                          <button onClick='deleteFun(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
+                          <button onClick='deletePassPort(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
                         </div>
                       </div>`;
 
   passportWrap.appendChild(passportRow);
+
+  extraField.passport.push(passportCounter);
+
+  const passportInput = document.querySelectorAll("passportInput");
+  newPassportInput = [...passportInput];
+
+   extraField.passport.forEach((item) => {
+     console.log("passport: ", item);
+     $(`#${item}`).on("change", function () {
+       //get the file name
+       var fileName = $(this).val();
+       //replace the "Choose a file" label
+       $(this).next(".custom-file-label").html(fileName);
+     });
+   });
+
+    extraField.passport.forEach((item) => {
+      console.log(item);
+
+      const input = document.querySelector(`#${item}`);
+      input.addEventListener("change", (e) => {
+        var file = e.target.files[0];
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          let image = e.target.result;
+          // console.log(image);
+          tempPASS.push(image);
+        };
+        reader.readAsDataURL(file);
+      });
+
+      return console.log(tempPASS);
+    });
+
+
 }
+let newPassportInput = [];
 
 
 
@@ -2049,6 +2158,8 @@ const phoneNumber = document.getElementById("phone-number");
   let tempPEM2 = [];
   let tempRFINFO = [[], [], [], [], []];
   let tempRFINFO2 = [];
+  let tempWESAIEA = [];
+  let tempPASS = [];
  
   // Gender selection function
 const radioBtn = () => {
@@ -2096,8 +2207,8 @@ const SubmitFormHandler = () => {
     currentEmployment: [],
     previousEmployment: [],
     referee: [],
-    wesAiea: [],
-    passport: [],
+    wesAiea: [...tempWESAIEA],
+    passport: [...tempPASS],
   };
 
   /*
@@ -2510,8 +2621,53 @@ const SubmitFormHandler = () => {
   =======================================
   */
 
+
+
   console.log("After submit : ", formValues);
 };
 const Submit = document.getElementById("submit");
 Submit.addEventListener("click", SubmitFormHandler);
 
+
+// Selecting the first wesAiea input
+$(`#wesAiea-001a`).on("change", function () {
+  //get the file name
+  var fileName = $(this).val();
+  //replace the "Choose a file" label
+  $(this).next(".custom-file-label").html(fileName);
+});
+
+// Converting WesAiea to Array of byte
+const input = document.querySelector(`#wesAiea-001a`);
+  input.addEventListener("change", (e) => {
+     var file = e.target.files[0];
+  let reader = new FileReader();
+  reader.onload = (e) => {
+    let image = e.target.result;
+    // console.log(image);
+    tempWESAIEA.push(image)
+  };
+  reader.readAsDataURL(file);
+  })
+
+
+  // Selecting the first passport input
+  $(`#passport-001a`).on("change", function () {
+    //get the file name
+    var fileName = $(this).val();
+    //replace the "Choose a file" label
+    $(this).next(".custom-file-label").html(fileName);
+  });
+
+  // Converting Passport to Array of byte
+const passInput = document.querySelector(`#passport-001a`);
+  passInput.addEventListener("change", (e) => {
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      let image = e.target.result;
+      // console.log(image);
+      tempPASS.push(image);
+    };
+    reader.readAsDataURL(file);
+  });

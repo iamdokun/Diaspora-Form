@@ -198,13 +198,7 @@
                           <div class="col-md">
                             <div class="form-group">
                               <label for="jobTitle1"></label>
-                              <select id="fDegree-001a" class="form-control" name="fDegree[]" >
-                                <option selected>Degree</option>
-                                <option>...</option>
-                                <option>BSc</option>
-                                <option>BEng</option>
-                                <option>LLM</option>
-                              </select>
+                              <input type="text" id="fDegree-001a" class="form-control" placeholder="BSc - Computer Engineering">
                             </div>
                           </div>
                           <div class="col-md">
@@ -255,10 +249,7 @@
                           <div class="col-md">
                             <div class="form-group">
                               <label for="jobTitle1"></label>
-                              <select id="sDegree-001a" class="form-control">
-                                <option selected>Degree</option>
-                                <option>...</option>
-                              </select>
+                              <input type="text" id="sDegree-001a" class="form-control" placeholder="MSc - Computer Science">
                             </div>
                           </div>
                           <div class="col-md">
@@ -306,10 +297,7 @@
                           <div class="col-md">
                             <div class="form-group">
                               <label for="jobTitle1"></label>
-                              <select id="pDegree-001a" class="form-control">
-                                <option selected>Degree</option>
-                                <option>...</option>
-                              </select>
+                              <input type="text" id="pDegree-001a" class="form-control" placeholder="PhD - Mathematics">
                             </div>
                           </div>
                           <div class="col-md">
@@ -962,10 +950,7 @@
                           <div class="col-md">
                             <div class="form-group">
                               <label for="inputState"></label>
-                              <select id="tCertificate-001a" class="form-control">
-                                <option selected>Title of Certfication</option>
-                                <option>...</option>
-                              </select>
+                              <input type="text" id="tCertificate-001a" class="form-control" placeholder="Title of Certfication">
                             </div>
                           </div>
                           <div class="col-md">
@@ -1103,10 +1088,7 @@
                           <div class="col-md">
                             <div class="form-group">
                               <label for="videoUrl1"></label>
-                              <select id="cRole-001a" class="form-control">
-                                <option selected>Role / Position</option>
-                                <option>...</option>
-                              </select>
+                              <input type="text" id="cRole-001a" class="form-control" placeholder="Role / Position">
                             </div>
                           </div>
                           <div class="col-md">
@@ -1152,10 +1134,7 @@
                           <div class="col-md">
                             <div class="form-group">
                               <label for="videoUrl1"></label>
-                              <select id="pRole-001a" class="form-control">
-                                <option selected>Role / Position</option>
-                                <option>...</option>
-                              </select>
+                              <input type="text" id="pRole-001a" class="form-control" placeholder="Role / Position">
                             </div>
                           </div>
                           <div class="col-md">
@@ -1255,8 +1234,8 @@
                           <div class="col-md">
                             <div class="form-group">
                               <div class="custom-file">
-                                <input type="file" class="custom-file-input form-control" id="inputGroupFile02">
-                                <label class="custom-file-label" for="inputGroupFile02">Document Upload</label>
+                                <input type="file" class="custom-file-input form-control" id="wesAiea-001a">
+                                <label class="custom-file-label" for="wesAiea-001a">Document Upload</label>
                               </div>
                             </div>
                           </div>
@@ -1281,8 +1260,8 @@
                           <div class="col-md">
                             <div class="form-group">
                               <div class="custom-file">
-                                <input type="file" class="custom-file-input form-control" id="inputGroupFile02">
-                                <label class="custom-file-label" for="inputGroupFile02">Image Upload</label>
+                                <input type="file" class="custom-file-input form-control" id="passport-001a">
+                                <label class="custom-file-label" for="passport-001a">Image Upload</label>
                               </div>
                             </div>
                           </div>
@@ -1419,6 +1398,14 @@
       // }
     });
   </script>
+  <!-- <script>
+    $('#inputGroupFile02').on('change', function () {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+    })
+  </script> -->
   <script>
     $('#demo').steps({
       onFinish: function () {
