@@ -4,23 +4,19 @@ const getNationality = async () => {
   const res = await fetch("https://countriesnow.space/api/v0.1/countries");
   const resData = await res.json();
   resData.data.forEach((item) => nationOps(item.country));
-  
-}
+};
 getNationality();
 function nationOps(countryData) {
   // console.log(countryData);
 
-  extraField.nationality.map(item => {
+  extraField.nationality.map((item) => {
     const selectElement = document.getElementById(item);
     const optElement = document.createElement("option");
     optElement.setAttribute("value", countryData);
     optElement.innerHTML = countryData;
     return selectElement.appendChild(optElement);
-  })
-
+  });
 }
-
-
 
 // Selecting buttons that add more input fields
 const firstDegreeBtn = document.querySelector("#first-degree-add-more");
@@ -28,10 +24,11 @@ const secondDegreeBtn = document.querySelector("#second-degree-add-more");
 const phdBtn = document.querySelector("#phd-add-more");
 const currentEmployerBtn = document.querySelector("#add-current-employment");
 const previousEmployerBtn = document.querySelector("#add-previous-employment");
-const IntrestedCourseBtn = document.querySelector("#intrested-course-btn");
-const prefferedIntitutionBtn = document.querySelector(
-  "#preffered-intitution-btn"
-);
+const courseNdIntitutionBtn = document.querySelector("#course-institute-btn");
+// const IntrestedCourseBtn = document.querySelector("#intrested-course-btn");
+// const prefferedIntitutionBtn = document.querySelector(
+//   "#preffered-intitution-btn"
+// );
 const wesAieaBtn = document.querySelector("#wes-aiea-btn");
 const passportBtn = document.querySelector("#passport-btn");
 const certificateBtn = document.querySelector("#certificate-btn");
@@ -48,10 +45,11 @@ let secondDegreeWrap = document.querySelector(".second-degree-wrap");
 let phdWrap = document.querySelector(".phd-wrap");
 let currentEmployerWrap = document.querySelector(".current-employment-wrap");
 let previousEmployerWrap = document.querySelector(".previous-employment-wrap");
-let IntrestedCourseWrap = document.querySelector(".intrested-course-wrap");
-let prefferedIntitutionWrap = document.querySelector(
-  ".preffered-intitution-wrap"
-);
+let courseNdIntitutionWrap = document.querySelector(".course-institute-wrap");
+// let IntrestedCourseWrap = document.querySelector(".intrested-course-wrap");
+// let prefferedIntitutionWrap = document.querySelector(
+//   ".preffered-intitution-wrap"
+// );
 let wesAieaWrap = document.querySelector(".wes-aiea-wrap");
 let passportWrap = document.querySelector(".passport-wrap");
 let certficationWrap = document.querySelector(".certfication-wrap");
@@ -68,8 +66,9 @@ secondDegreeBtn.addEventListener("click", secondDegreeFunc);
 phdBtn.addEventListener("click", phdFunc);
 currentEmployerBtn.addEventListener("click", currentEmployerFunc);
 previousEmployerBtn.addEventListener("click", previousEmployerFunc);
-IntrestedCourseBtn.addEventListener("click", IntrestedCourseFunc);
-prefferedIntitutionBtn.addEventListener("click", prefferedIntitutionFunc);
+courseNdIntitutionBtn.addEventListener("click", courseNdIntitutionFunc);
+// IntrestedCourseBtn.addEventListener("click", IntrestedCourseFunc);
+// prefferedIntitutionBtn.addEventListener("click", prefferedIntitutionFunc);
 wesAieaBtn.addEventListener("click", wesAieaFunc);
 passportBtn.addEventListener("click", passportFunc);
 certificateBtn.addEventListener("click", certficationFunc);
@@ -98,8 +97,7 @@ const extraField = {
     ["pStartDate-001a"],
     ["pEndDate-001a"],
   ],
-  intrestedCourse: ["iCourses-001a"],
-  prefferedInstitution: ["pfInstitute-001a"],
+  courseNdInstitute: [["icourse-001a"], ["pinstitute-001a"]],
   certificate: [["tCertificate-001a"], ["cYear-001a"]],
   researchExperience: [
     ["rInstitute-001a"],
@@ -135,7 +133,6 @@ const extraField = {
   wesAiea: [],
   passport: [],
 };
-
 
 /*
 ========================================
@@ -342,24 +339,61 @@ End: Delete Functions for PhD
 */
 
 /*
+=========================================================
+Start: Delete Functions for Course & Institution to Teach
+=========================================================
+*/
+function deleteCOINFunc(e) {
+  const btnId = document.getElementById(e.id);
+  btnId.parentElement.parentElement.parentElement.remove();
+
+  // Interested Course to Teach
+  const iCourseArr = extraField.courseNdInstitute[0];
+  let iCourseInput;
+  newIcourseInput.map((item) => {
+    iCourseInput = item.id;
+    return iCourseInput;
+  });
+  const index = iCourseArr.indexOf(iCourseInput);
+  iCourseArr.splice(index, 1);
+
+  // Preffered Institute
+  const pInstituteArr = extraField.courseNdInstitute[1];
+  let pInstituteInput;
+  newPIntitutionInput.map((item) => {
+    pInstituteInput = item.id;
+    return pInstituteInput;
+  });
+  const index2 = pInstituteArr.indexOf(pInstituteInput);
+  pInstituteArr.splice(index2, 1);
+
+  console.log(extraField.courseNdInstitute);
+}
+/*
+=========================================================
+End: Delete Functions for Course & Institution to Teach
+=========================================================
+*/
+
+/*
 =============================================
 Start: Delete Functions for Intrested Courses
 =============================================
 */
-  function deleteIntrestedC(e) {
-    const btnId = document.getElementById(e.id);
-    btnId.parentElement.parentElement.parentElement.remove();
+// function deleteIntrestedC(e) {
+//   const btnId = document.getElementById(e.id);
+//   btnId.parentElement.parentElement.parentElement.remove();
 
-    // Delete
-    const iCoursesArr = extraField.intrestedCourse;
-    let iCoursesInput;
-    newiCoursesInput.map((item) => {
-      iCoursesInput = item.id;
-      return pEndDateInput;
-    });
-    const index = iCoursesArr.indexOf(iCoursesInput);
-    iCoursesArr.splice(index, 1);
-  }
+//   // Delete
+//   const iCoursesArr = extraField.intrestedCourse;
+//   let iCoursesInput;
+//   newiCoursesInput.map((item) => {
+//     iCoursesInput = item.id;
+//     return pEndDateInput;
+//   });
+//   const index = iCoursesArr.indexOf(iCoursesInput);
+//   iCoursesArr.splice(index, 1);
+// }
 /*
 ============================================
 End: Delete Functions for Intrested Courses
@@ -371,20 +405,20 @@ End: Delete Functions for Intrested Courses
 Start: Delete Functions for Preffered Institution
 =================================================
 */
-  function deletePFCourse(e) {
-    const btnId = document.getElementById(e.id);
-    btnId.parentElement.parentElement.parentElement.remove();
+// function deletePFCourse(e) {
+//   const btnId = document.getElementById(e.id);
+//   btnId.parentElement.parentElement.parentElement.remove();
 
-    // Remove ID from Arr 
-    const pfInstituteArr = extraField.prefferedInstitution;
-    let pfInstituteInput;
-    newpfInstitute.map((item) => {
-      pfInstituteInput = item.id;
-      return pfInstituteInput;
-    });
-    const index = pfInstituteArr.indexOf(pfInstituteInput);
-    pfInstituteArr.splice(index, 1);
-  }
+//   // Remove ID from Arr
+//   const pfInstituteArr = extraField.prefferedInstitution;
+//   let pfInstituteInput;
+//   newpfInstitute.map((item) => {
+//     pfInstituteInput = item.id;
+//     return pfInstituteInput;
+//   });
+//   const index = pfInstituteArr.indexOf(pfInstituteInput);
+//   pfInstituteArr.splice(index, 1);
+// }
 /*
 ================================================
 End: Delete Functions for Preffered Institution
@@ -541,7 +575,7 @@ End: Delete Functions for Honors & Awards
 Start: Delete Functions for Current Employment 
 ================================================
 */
-function  deleteCEPLY(e) {
+function deleteCEPLY(e) {
   const btnId = document.getElementById(e.id);
   btnId.parentElement.parentElement.parentElement.remove();
 
@@ -586,7 +620,6 @@ function  deleteCEPLY(e) {
   ceEndArr.splice(index4, 1);
 
   console.log(extraField.currentEmployment);
-
 }
 /*
 ================================================
@@ -660,7 +693,6 @@ function deleteRefFun(e) {
   const btnId = document.getElementById(e.id);
   btnId.parentElement.parentElement.parentElement.remove();
 
-
   // First Name Input
   const rfNameArr = extraField.refereeAddress[0];
   let rfNameInput;
@@ -728,7 +760,7 @@ function deleteWesAiea(e) {
   const btnId = document.getElementById(e.id);
   btnId.parentElement.parentElement.parentElement.remove();
 
-  // 
+  //
   const wesAieaArr = extraField.wesAiea;
   let wesAieaInput;
   newWesAieaInput.map((item) => {
@@ -755,7 +787,7 @@ function deletePassPort(e) {
   const btnId = document.getElementById(e.id);
   btnId.parentElement.parentElement.parentElement.remove();
 
-   // 
+  //
   const passportArr = extraField.passport;
   let passportInput;
   newPassportInput.map((item) => {
@@ -772,8 +804,6 @@ function deletePassPort(e) {
 End: Delete Functions for Passport Input
 ================================================
 */
-
-
 
 function nationalityFunc() {
   let counter = `nationality-${new Date().getMilliseconds()}`;
@@ -804,9 +834,7 @@ function nationalityFunc() {
   console.log("Push id to nationality arr: ", extraField.nationality);
 
   const deletNationality = document.querySelectorAll(".delete-nationality");
-  newDeleteNationality = [...deletNationality]
-
-  ;
+  newDeleteNationality = [...deletNationality];
 }
 let newDeleteNationality = [];
 
@@ -828,13 +856,7 @@ function firstDegreeFunc() {
                       <div class="col-md">
                         <div class="form-group">
                           <label for="videoUrl1"></label>
-                          <select id="${instituteCounter}" class="form-control finstitution-input">
-                            <option selected>Name Of Institution</option>
-                            <option>...</option>
-                            <option>University of Lagos</option>
-                            <option>University of Jos</option>
-                            <option>Ekiti State University</option>
-                          </select>
+                           <input type="text" id="${instituteCounter}" class="form-control finstitution-input" placeholder="Name Of Institution">
                         </div>
                       </div>
                       <div class="col-md">
@@ -873,22 +895,20 @@ function firstDegreeFunc() {
   newfDegreeInput = [...fDegreeInput];
 
   const fInstituteInput = document.querySelectorAll(".finstitution-input");
-  newfIntution = [...fInstituteInput]
+  newfIntution = [...fInstituteInput];
 
   const fStartDate = document.querySelectorAll(".fstart-date");
   newfStartDate = [...fStartDate];
 
   const fEndDate = document.querySelectorAll(".fend-date");
   newfEndDate = [...fEndDate];
-  
- 
 }
 
 let newDeleteFD = [];
 let newfDegreeInput = [];
-let newfIntution = []
-let newfStartDate = []
-let newfEndDate = []
+let newfIntution = [];
+let newfStartDate = [];
+let newfEndDate = [];
 
 function secondDegreeFunc() {
   let degreeCounter = `sDegree-${new Date().getMilliseconds()}`;
@@ -908,10 +928,7 @@ function secondDegreeFunc() {
                       <div class="col-md">
                         <div class="form-group">
                           <label for="videoUrl1"></label>
-                          <select id="${instituteCounter}" class="form-control sInstitution-input">
-                            <option selected>Name Of Institution</option>
-                            <option>...</option>
-                          </select>
+                          <input type="text" id="${instituteCounter}" class="form-control sInstitution-input" placeholder="Name Of Institution">
                         </div>
                       </div>
                       <div class="col-md">
@@ -961,10 +978,10 @@ let newsStartDate = [];
 let newsEndDate = [];
 
 function phdFunc() {
-    let degreeCounter = `pDegree-${new Date().getMilliseconds()}`;
-    let instituteCounter = `pInstitute-${new Date().getMilliseconds()}`;
-    let startDateCounter = `pStartDate-${new Date().getMilliseconds()}`;
-    let endDateCounter = `pEndDate-${new Date().getMilliseconds()}`;
+  let degreeCounter = `pDegree-${new Date().getMilliseconds()}`;
+  let instituteCounter = `pInstitute-${new Date().getMilliseconds()}`;
+  let startDateCounter = `pStartDate-${new Date().getMilliseconds()}`;
+  let endDateCounter = `pEndDate-${new Date().getMilliseconds()}`;
 
   let phdRow = document.createElement("div");
   phdRow.classList.add("row", "m-t-2");
@@ -978,10 +995,7 @@ function phdFunc() {
                       <div class="col-md">
                         <div class="form-group">
                           <label for="videoUrl1"></label>
-                          <select id="${instituteCounter}" class="form-control pInstitution-input">
-                            <option selected>Name Of Institution</option>
-                            <option>...</option>
-                          </select>
+                          <input type="text" id="${instituteCounter}" class="form-control pInstitution-input" placeholder="Name Of Institution">
                         </div>
                       </div>
                       <div class="col-md">
@@ -1030,602 +1044,45 @@ let newpIntution = [];
 let newpStartDate = [];
 let newpEndDate = [];
 
-function IntrestedCourseFunc() {
-   let coursesCounter = `iCourses-${new Date().getMilliseconds()}`;
+function courseNdIntitutionFunc() {
+  let icourseCounter = `icourse-${new Date().getMilliseconds()}`;
+  let pinstituteCounter = `pinstitute-${new Date().getMilliseconds()}`;
 
-  let IntrestedCourseRow = document.createElement("div");
-  IntrestedCourseRow.classList.add("row", "m-t-2");
-  IntrestedCourseRow.innerHTML = `<div class="col-md-1">
-                        <label for="inputEmail3" class="col-form-label m-t-2">Course Title</label>
-                      </div>
-                      <div class="col-md">
-                        <div class="form-group">
-                          <label for="jobTitle1"></label>
-                          <select id="${coursesCounter}" class="form-control iCourses">
-                            <option selected>Select Course</option>
-                            <option value='Agriculture'>Agriculture</option>
-<option value='Agricultural Economics'>Agricultural Economics</option>
-<option value='Agricultural Extension'>Agricultural Extension</option>
-<option value='Agronomy'>Agronomy</option>
-<option value='Animal Science'>Animal Science</option>
-<option value='Crop Science'>Crop Science</option>
-<option value='Food Science and Technology'>Food Science and Technology</option>
-<option value='Fisheries'>Fisheries</option>
-<option value='Forest Resources Management (Forestry)'>Forest Resources Management (Forestry)</option>
-<option value='Home Science, Nutrition and Dietetics'>Home Science, Nutrition and Dietetics</option>
-<option value='Soil Science'>Soil Science</option>
-<option value='Archeology and Tourism'>Archeology and Tourism</option>
-<option value='Arabic and Islamic Studies'>Arabic and Islamic Studies</option>
-<option value='Christian Religious Studies'>Christian Religious Studies</option>
-<option value='English and Literary Studies'>English and Literary Studies</option>
-<option value='Fine and Applied Arts (Creatiuve Arts)'>Fine and Applied Arts (Creatiuve Arts)</option>
-<option value='Foreign Languages and Literature'>Foreign Languages and Literature</option>
-<option value='History and International Studies'>History and International Studies</option>
-<option value='Linguistics and Nigerian Languages'>Linguistics and Nigerian Languages</option>
-<option value='Mass Communication (Communication and Language Arts)'>Mass Communication (Communication and Language Arts)</option>
-<option value='Music'>Music</option>
-<option value='Theatre and Film Studies'>Theatre and Film Studies</option>
-<option value='Biochemistry'>Biochemistry</option>
-<option value='Botany'>Botany</option>
-<option value='Microbiology'>Microbiology</option>
-<option value='Marine Biology'>Marine Biology</option>
-<option value='Cell Biology & Genetics'>Cell Biology & Genetics</option>
-<option value='Zoology'>Zoology</option>
-<option value='Accountancy'>Accountancy</option>
-<option value='Acturial Science'>Acturial Science</option>
-<option value='Business Administration'>Business Administration</option>
-<option value='Business Management'>Business Management</option>
-<option value='Banking and Finance'>Banking and Finance</option>
-<option value='Hospitality and Tourism'>Hospitality and Tourism</option>
-<option value='Marketing'>Marketing</option>
-<option value='Insurance'>Insurance</option>
-<option value='Industrial Relations and Personnel Management'>Industrial Relations and Personnel Management</option>
-<option value='Child Dental Health'>Child Dental Health</option>
-<option value='Oral and Maxillofacial Surgery'>Oral and Maxillofacial Surgery</option>
-<option value='Preventive Dentistry'>Preventive Dentistry</option>
-<option value='Restorative Dentistry'>Restorative Dentistry</option>
-<option value='Adult Education and Extra-Mural Studies'>Adult Education and Extra-Mural Studies</option>
-<option value='Arts Education'>Arts Education</option>
-<option value='Education & Accountancy'>Education & Accountancy</option>
-<option value='Education & Computer Science'>Education & Computer Science</option>
-<option value='Education & Economics'>Education & Economics</option>
-<option value='Education & Mathematics'>Education & Mathematics</option>
-<option value='Education & Physics'>Education & Physics</option>
-<option value='Education & Religious Studies'>Education & Religious Studies</option>
-<option value='Education & Social Science'>Education & Social Science</option>
-<option value='Education And Biology'>Education And Biology</option>
-<option value='Education And Chemistry'>Education And Chemistry</option>
-<option value='Education And English Language'>Education And English Language</option>
-<option value='Education And French'>Education And French</option>
-<option value='Education And Geography/Physics'>Education And Geography/Physics</option>
-<option value='Education And Political Science'>Education And Political Science</option>
-<option value='Educational Foundations'>Educational Foundations</option>
-<option value='Educational / Psychology Guidance And Counselling'>Educational / Psychology Guidance And Counselling</option>
-<option value='Health and Physical Education'>Health and Physical Education</option>
-<option value='Library and Information Science'>Library and Information Science</option>
-<option value='Science Education'>Science Education</option>
-<option value='Social Sciences Education'>Social Sciences Education</option>
-<option value='Vocational Teacher Education (Technical Education)'>Vocational Teacher Education (Technical Education)</option>
-<option value='Religion'>Religion</option>
-<option value='Igbo Linguistics'>Igbo Linguistics</option>
-<option value='Agricultural and Bioresources Engineering'>Agricultural and Bioresources Engineering</option>
-<option value='Civil Engineering'>Civil Engineering</option>
-<option value='Chemical Engineering'>Chemical Engineering</option>
-<option value='Computer Engineering'>Computer Engineering</option>
-<option value='Electrical Engineering'>Electrical Engineering</option>
-<option value='Electronic Engineering'>Electronic Engineering</option>
-<option value='Marine Engineering'>Marine Engineering</option>
-<option value='Mechanical Engineering'>Mechanical Engineering</option>
-<option value='Metallurgical and Materials Engineering'>Metallurgical and Materials Engineering</option>
-<option value='Petroleum and Gas Engineering'>Petroleum and Gas Engineering</option>
-<option value='Systems Engineering'>Systems Engineering</option>
-<option value='Structural Engineering'>Structural Engineering</option>
-<option value='Production and Industrial Engineering'>Production and Industrial Engineering</option>
-<option value='Architecture'>Architecture</option>
-<option value='Estate Management'>Estate Management</option>
-<option value='Quantity Surveying'>Quantity Surveying</option>
-<option value='Building'>Building</option>
-<option value='Geoinformatics and Surveying'>Geoinformatics and Surveying</option>
-<option value='Urban and Regional Planning'>Urban and Regional Planning</option>
-<option value='Health Administration and Management'>Health Administration and Management</option>
-<option value='Medical Laboratory Sciences'>Medical Laboratory Sciences</option>
-<option value='Medical Radiography and Radiological Sciences'>Medical Radiography and Radiological Sciences</option>
-<option value='Medical Rehabilitation'>Medical Rehabilitation</option>
-<option value='Nursing Sciences'>Nursing Sciences</option>
-<option value='Commercial and Property Law'>Commercial and Property Law</option>
-<option value='International and Jurisprudence'>International and Jurisprudence</option>
-<option value='Private and Public Law'>Private and Public Law</option>
-<option value='Anatomy'>Anatomy</option>
-<option value='Anesthesia'>Anesthesia</option>
-<option value='Chemical Pathology'>Chemical Pathology</option>
-<option value='Community Medicine'>Community Medicine</option>
-<option value='Dermatology'>Dermatology</option>
-<option value='Hematology and Immunology'>Hematology and Immunology</option>
-<option value='Medical Biochemistry'>Medical Biochemistry</option>
-<option value='Medical Microbiology'>Medical Microbiology</option>
-<option value='Medicine'>Medicine</option>
-<option value='Morbid Anatomy'>Morbid Anatomy</option>
-<option value='Obstetrics and Gynecology'>Obstetrics and Gynecology</option>
-<option value='Ophthalmology'>Ophthalmology</option>
-<option value='Otolaryngology'>Otolaryngology</option>
-<option value='Pediatrics'>Pediatrics</option>
-<option value='Pharmacology and Therapeutics'>Pharmacology and Therapeutics</option>
-<option value='Physiology'>Physiology</option>
-<option value='Radiation Medicine'>Radiation Medicine</option>
-<option value='Surgery'>Surgery</option>
-<option value='Psychological Medicine'>Psychological Medicine</option>
-<option value='Child Dental Health'>Child Dental Health</option>
-<option value='Clinical Pharmacy and Pharmacy Management'>Clinical Pharmacy and Pharmacy Management</option>
-<option value='Pharmaceutical Chemistry and Industrial Pharmacy'>Pharmaceutical Chemistry and Industrial Pharmacy</option>
-<option value='Pharmaceutical Technology and Industrial Pharmacy'>Pharmaceutical Technology and Industrial Pharmacy</option>
-<option value='Pharmaceutics'>Pharmaceutics</option>
-<option value='Pharmacognosy'>Pharmacognosy</option>
-<option value='Department of Pharmacology and Toxicology'>Department of Pharmacology and Toxicology</option>
-<option value='Computer Science'>Computer Science</option>
-<option value='Geology'>Geology</option>
-<option value='Mathematics'>Mathematics</option>
-<option value='Physics and Astronomy'>Physics and Astronomy</option>
-<option value='Geophysics'>Geophysics</option>
-<option value='Pure and Industrial Chemistry'>Pure and Industrial Chemistry</option>
-<option value='Statistics'>Statistics</option>
-<option value='Economics'>Economics</option>
-<option value='Geography'>Geography</option>
-<option value='Philosophy'>Philosophy</option>
-<option value='Political Science'>Political Science</option>
-<option value='Psychology'>Psychology</option>
-<option value='Public Administration and Local Government'>Public Administration and Local Government</option>
-<option value='Religion'>Religion</option>
-<option value='Social Work'>Social Work</option>
-<option value='Sociology/Anthropology'>Sociology/Anthropology</option>
-<option value='Veterinary Physiology/Pharmacology'>Veterinary Physiology/Pharmacology</option>
-<option value='Veterinary Anatomy'>Veterinary Anatomy</option>
-<option value='Animal Health and Production'>Animal Health and Production</option>
-<option value='Veterinary Parasitology and Entomology'>Veterinary Parasitology and Entomology</option>
-<option value='Veterinary Pathology and Microbiology'>Veterinary Pathology and Microbiology</option>
-<option value='Veterinary Public Health and Preventive Medicine'>Veterinary Public Health and Preventive Medicine</option>
-<option value='Veterinary Surgery'>Veterinary Surgery</option>
-<option value='Veterinary Medicine'>Veterinary Medicine</option>
-<option value='Veterinary Obstetrics and Reproductive Diseases'>Veterinary Obstetrics and Reproductive Diseases</option>
-<option value='Veterinary Teaching Hospital'>Veterinary Teaching Hospital</option>
-<option value='Agriculture'>Agriculture</option>
-<option value='Biology'>Biology</option>
-<option value='Chemistry'>Chemistry</option>
-<option value='Physics'>Physics</option>
-<option value='Computer Programming'>Computer Programming</option>
-<option value='Criminology'>Criminology</option>
-<option value='Film'>Film</option>
-<option value='Finance'>Finance</option>
-<option value='Fine Art'>Fine Art</option>
-<option value='Environmental Science'>Environmental Science</option>
-<option value='Dentistry'>Dentistry</option>
-<option value='Construction Management'>Construction Management</option>
-<option value='Psychology'>Psychology</option>
-<option value='Sociology'>Sociology</option>
-<option value='Dance'>Dance</option>
-<option value='Graphic Design'>Graphic Design</option>
-<option value='Forensic Science'>Forensic Science</option>
-<option value='Forestry'>Forestry</option>
-<option value='Health Technology'>Health Technology</option>
-<option value='Horticulture'>Horticulture</option>
-<option value='History'>History</option>
-<option value='International Relations and Personnel Management'>International Relations and Personnel Management</option>
-<option value='Hospitality '>Hospitality </option>
-<option value='Insurance'>Insurance</option>
-<option value='Interior Design'>Interior Design</option>
-<option value='International Business'>International Business</option>
-<option value='Investment'>Investment</option>
-<option value='Mass Communication '>Mass Communication </option>
-<option value='Journalism'>Journalism</option>
-<option value='Law'>Law</option>
-<option value='Medical Science'>Medical Science</option>
-<option value='Physical Education'>Physical Education</option>
-<option value='Music'>Music</option>
-<option value='Leadership'>Leadership</option>
-<option value='Property Management'>Property Management</option>
-<option value='Public Health'>Public Health</option>
-<option value='Sports Coaching'>Sports Coaching</option>
-<option value='Real Estate'>Real Estate</option>
-<option value='Sports Management'>Sports Management</option>
-<option value='Teaching'>Teaching</option>
-<option value='Surveying'>Surveying</option>
-<option value='Masters in Business Administration (MBA)'>Masters in Business Administration (MBA)</option>
-<option value='Energy Law'>Energy Law</option>
-<option value='Oil and Gas Law'>Oil and Gas Law</option>
-<option value='French'>French</option>
-<option value='Latin'>Latin</option>
-<option value='Greek'>Greek</option>
-<option value='Plant and Crop Sciences'>Plant and Crop Sciences</option>
-<option value='Vertinary Medicine'>Vertinary Medicine</option>
-<option value='Life Sciences'>Life Sciences</option>
-<option value='Sports Science'>Sports Science</option>
-<option value='Materials Sciences'>Materials Sciences</option>
-<option value='General Sciences'>General Sciences</option>
-<option value='Astronomy'>Astronomy</option>
-<option value='Biomedical Sciences'>Biomedical Sciences</option>
-<option value='Earth Sciences'>Earth Sciences</option>
-<option value='Physical Geography'>Physical Geography</option>
-<option value='Physics'>Physics</option>
-<option value='Construction'>Construction</option>
-<option value='Built Environment'>Built Environment</option>
-<option value='Maintenance Services'>Maintenance Services</option>
-<option value='Planning'>Planning</option>
-<option value='E-Commerce'>E-Commerce</option>
-<option value='Business Studies'>Business Studies</option>
-<option value='Accounting'>Accounting</option>
-<option value='Management'>Management</option>
-<option value='Office Administration'>Office Administration</option>
-<option value='Retail'>Retail</option>
-<option value='Entrepreneurship'>Entrepreneurship</option>
-<option value='Human Resource Management'>Human Resource Management</option>
-<option value='Quality Management '>Quality Management </option>
-<option value='Transportation and Logistics'>Transportation and Logistics</option>
-<option value='Information Technology'>Information Technology</option>
-<option value='Software Development'>Software Development</option>
-<option value='Computing'>Computing</option>
-<option value='Multimedia'>Multimedia</option>
-<option value='Arts Education'>Arts Education</option>
-<option value='Crafts'>Crafts</option>
-<option value='fashion and Textile Design'>fashion and Textile Design</option>
-<option value='Industrial Design'>Industrial Design</option>
-<option value='Theatre and Drama Studies'>Theatre and Drama Studies</option>
-<option value='Art Administration'>Art Administration</option>
-<option value='Non-industrial Design'>Non-industrial Design</option>
-<option value='Career Advice'>Career Advice</option>
-<option value='Coaching'>Coaching</option>
-<option value='Education Management'>Education Management</option>
-<option value='Educational Psychology'>Educational Psychology</option>
-<option value='Special Education'>Special Education</option>
-<option value='Teacher Training PGCE'>Teacher Training PGCE</option>
-<option value='CPD'>CPD</option>
-<option value='Chidhood Education'>Chidhood Education</option>
-<option value='Education Learning '>Education Learning </option>
-<option value='Education Research '>Education Research </option>
-<option value='Pedagogy'>Pedagogy</option>
-<option value='Specialised Teaching'>Specialised Teaching</option>
-<option value='Aerospace Engineering '>Aerospace Engineering </option>
-<option value='Chemical and Materials Engineering'>Chemical and Materials Engineering</option>
-<option value='Environmental Engineering'>Environmental Engineering</option>
-<option value='Biomedical Engineering'>Biomedical Engineering</option>
-<option value='Manufacturing and Production'>Manufacturing and Production</option>
-<option value='Mining and Oil & Gas Operations'>Mining and Oil & Gas Operations</option>
-<option value='Quality Control'>Quality Control</option>
-<option value='Telecommunications'>Telecommunications</option>
-<option value='General Engineering and Technology'>General Engineering and Technology</option>
-<option value='Marine Engineering'>Marine Engineering</option>
-<option value='Metallurgy'>Metallurgy</option>
-<option value='Power and Energy Engineering '>Power and Energy Engineering </option>
-<option value='Structural Engineering'>Structural Engineering</option>
-<option value='Vehicle Engineering'>Vehicle Engineering</option>
-<option value='Counselling'>Counselling</option>
-<option value='Guidance and Cunselling'>Guidance and Cunselling</option>
-<option value='Complementary Health'>Complementary Health</option>
-<option value='Health and Safety'>Health and Safety</option>
-<option value='Midwifery'>Midwifery</option>
-<option value='Nutrition and Health'>Nutrition and Health</option>
-<option value='Pharmacology'>Pharmacology</option>
-<option value='Physiotherapy'>Physiotherapy</option>
-<option value='Radiology'>Radiology</option>
-<option value='Health Studies'>Health Studies</option>
-<option value='Psychology'>Psychology</option>
-<option value='Archaeology'>Archaeology</option>
-<option value='Cultural Studies'>Cultural Studies</option>
-<option value='Genaral Studies'>Genaral Studies</option>
-<option value='Languages'>Languages</option>
-<option value='Museum Studies'>Museum Studies</option>
-<option value='Regional Studies'>Regional Studies</option>
-<option value='Classics'>Classics</option>
-<option value='Literature'>Literature</option>
-<option value='Religious Studies'>Religious Studies</option>
-<option value='English Studies'>English Studies</option>
-<option value='Civil Law'>Civil Law</option>
-<option value='Legal Studies'>Legal Studies</option>
-<option value='International Law'>International Law</option>
-<option value='Criminl Law'>Criminl Law</option>
-<option value='Legal Advice'>Legal Advice</option>
-<option value='Public Law'>Public Law</option>
-<option value='Aerospace Engineering/Business Administration'>Aerospace Engineering/Business Administration</option>
-<option value='Bioengineering'>Bioengineering</option>
-<option value='Bioengineering/Business Administration'>Bioengineering/Business Administration</option>
-<option value='Beauty Therapy'>Beauty Therapy</option>
-<option value='Health and Fitness'>Health and Fitness</option>
-<option value='Hairdressing '>Hairdressing </option>
-<option value='Therapeutic'>Therapeutic</option>
-<option value='Massage'>Massage</option>
-<option value='Social Work'>Social Work</option>
-<option value='Linguistics '>Linguistics </option>
-<option value='Environmental Management'>Environmental Management</option>
-<option value='International relations'>International relations</option>
-<option value='Film and Television'>Film and Television</option>
-<option value='Library Studies'>Library Studies</option>
-<option value='Media'>Media</option>
-<option value='Politics'>Politics</option>
-<option value='Social Sciences Education'>Social Sciences Education</option>
-<option value='Writing'>Writing</option>
-<option value='Photography'>Photography</option>
-<option value='Public Administration '>Public Administration </option>
-<option value='International Development'>International Development</option>
-<option value='Catering'>Catering</option>
-<option value='Aviation'>Aviation</option>
-<option value='Food and Drink Production'>Food and Drink Production</option>
-<option value='Hotel Management'>Hotel Management</option>
-<option value='Hospitality'>Hospitality</option>
-<option value='Leisure Management'>Leisure Management</option>
-<option value='Biological Sciences'>Biological Sciences</option>
-<option value='Art and Design'>Art and Design</option>
-<option value='Anthropology'>Anthropology</option>
-<option value='Agriculture and Forestry'>Agriculture and Forestry</option>
-<option value='Anatomy and Physiology'>Anatomy and Physiology</option>
-<option value='Business and Management Studies'>Business and Management Studies</option>
-<option value='Building'>Building</option>
-<option value='Classica and Ancient History'>Classica and Ancient History</option>
-<option value='Communications and Media Studies'>Communications and Media Studies</option>
-<option value='Complementary Medicine'>Complementary Medicine</option>
-<option value='Creative Writing'>Creative Writing</option>
-<option value='Education'>Education</option>
-<option value='Drama Dance and Cinematics'>Drama Dance and Cinematics</option>
-<option value='Fashion'>Fashion</option>
-<option value='Geology'>Geology</option>
-<option value='Health and Social Care'>Health and Social Care</option>
-<option value='Forensic Science'>Forensic Science</option>
-<option value='Film Making'>Film Making</option>
-<option value='General Engineering '>General Engineering </option>
-<option value='Geography and Environmental Science'>Geography and Environmental Science</option>
-<option value='History of Art Architecture and Design'>History of Art Architecture and Design</option>
-<option value='Hospitality Leisure Recreation and Tourism'>Hospitality Leisure Recreation and Tourism</option>
-<option value='Food Science '>Food Science </option>
-<option value='Land and Property Management'>Land and Property Management</option>
-<option value='Materials Technology'>Materials Technology</option>
-<option value='Medical Technology'>Medical Technology</option>
-<option value='Occupational Therapy'>Occupational Therapy</option>
-<option value='Pharmacology and Pharmacy'>Pharmacology and Pharmacy</option>
-<option value='Robotics'>Robotics</option>
-<option value='Nursing '>Nursing </option>
-<option value='Youth Work'>Youth Work</option>
-<option value='Social  Policy'>Social  Policy</option>
-<option value='Bioscience'>Bioscience</option>
-<option value='Building and Town and Country Planning'>Building and Town and Country Planning</option>
-<option value='Design and Craft'>Design and Craft</option>
-<option value='Earth and Marine Science'>Earth and Marine Science</option>
-<option value='English Literature'>English Literature</option>
-<option value='Event Management'>Event Management</option>
-<option value='Liberal Arts'>Liberal Arts</option>
-<option value='Life Sciences'>Life Sciences</option>
-<option value='Nursing and Midwifery'>Nursing and Midwifery</option>
-<option value='Pharmacy'>Pharmacy</option>
-<option value='Media Studies'>Media Studies</option>
-<option value='Biotechnology'>Biotechnology</option>
-<option value='Animation'>Animation</option>
-<option value='Aerospace Engineering'>Aerospace Engineering</option>
-<option value='Air Transport Management'>Air Transport Management</option>
-<option value='American Studies'>American Studies</option>
-<option value='Digital Media'>Digital Media</option>
-<option value='Development Studies'>Development Studies</option>
-<option value='Engineering'>Engineering</option>
-<option value='Oil and Gas Engineering'>Oil and Gas Engineering</option>
-<option value='Oil and Gas Management'>Oil and Gas Management</option>
-<option value='Supply Chain and Logistics'>Supply Chain and Logistics</option>
-<option value='TESOL'>TESOL</option>
-<option value='Architecture Interior Design'>Architecture Interior Design</option>
-<option value='Business Education'>Business Education</option>
-<option value='Dredging Technology'>Dredging Technology</option>
-<option value='Ancient Indian Culture'>Ancient Indian Culture</option>
-<option value='Arabic'>Arabic</option>
-<option value='Bengali'>Bengali</option>
-<option value='Gujarati'>Gujarati</option>
-<option value='Folklore'>Folklore</option>
-<option value='Textile Engineering'>Textile Engineering</option>
-<option value='Biochemical Engineering'>Biochemical Engineering</option>
-<option value='Ceramic Engineering'>Ceramic Engineering</option>
-<option value='Instrumentation Engineering '>Instrumentation Engineering </option>
-<option value='Mechatronics Engineering'>Mechatronics Engineering</option>
-<option value='Telecommunications Engineeering'>Telecommunications Engineeering</option>
-<option value='Automobile Engineering'>Automobile Engineering</option>
-<option value='Production Engineering'>Production Engineering</option>
-<option value='Mining Engineering'>Mining Engineering</option>
-<option value='Genetic Engineering'>Genetic Engineering</option>
-<option value='Computer Management'>Computer Management</option>
-<option value='Visual Communication'>Visual Communication</option>
-<option value='Design'>Design</option>
-<option value='Financial Markets'>Financial Markets</option>
-<option value='Acting and Film-making'>Acting and Film-making</option>
-<option value='Electronics'>Electronics</option>
-<option value='Physical Education'>Physical Education</option>
-<option value='Audiology and Speech Language Pathology'>Audiology and Speech Language Pathology</option>
-<option value='Cyber Law'>Cyber Law</option>
-<option value='Labour Law'>Labour Law</option>
-<option value='Naturopathy and Yogic Sciences'>Naturopathy and Yogic Sciences</option>
-<option value='Optomery'>Optomery</option>
-<option value='Paramedical Technology'>Paramedical Technology</option>
-<option value='Veterinary Science'>Veterinary Science</option>
-<option value='Technology Management'>Technology Management</option>
-<option value='Natural Resource Management'>Natural Resource Management</option>
-<option value='Communication Management'>Communication Management</option>
-<option value='Environmental Management'>Environmental Management</option>
-<option value='Media Management'>Media Management</option>
-<option value='International Business'>International Business</option>
-<option value='Systems Management'>Systems Management</option>
-<option value='Rural Development Management'>Rural Development Management</option>
-<option value='Healthcare and Hospital Management'>Healthcare and Hospital Management</option>
-<option value='Retail Management'>Retail Management</option>
-<option value='Banking & Insurance'>Banking & Insurance</option>
-<option value='Medical Laboratory Technology'>Medical Laboratory Technology</option>
-<option value='Management Studies'>Management Studies</option>
-<option value='Sales Management'>Sales Management</option>
-<option value='Hotel Management & Catering Technology'>Hotel Management & Catering Technology</option>
-<option value='Tax Management'>Tax Management</option>
-<option value='Elementary Education'>Elementary Education</option>
-<option value='Materials Management'>Materials Management</option>
-<option value='Operations Management'>Operations Management</option>
-<option value='Commerce '>Commerce </option>
-<option value='Legislative Law'>Legislative Law</option>
-<option value='Multimedia Communication'>Multimedia Communication</option>
-<option value='Mass Media'>Mass Media</option>
-<option value='Advertising'>Advertising</option>
-<option value='Project Management'>Project Management</option>
-<option value='Risk Management'>Risk Management</option>
-<option value='Sustainable Management'>Sustainable Management</option>
-<option value='Textile Designing'>Textile Designing</option>
-<option value='Customer Relationship Mangement'>Customer Relationship Mangement</option>
-<option value='Oceanography'>Oceanography</option>
-<option value='Data Management/Data Analysis'>Data Management/Data Analysis</option>
-<option value='Astrology'>Astrology</option>
-<option value='Computer Applications'>Computer Applications</option>
-<option value='Industrial Management'>Industrial Management</option>
-<option value='Power Management'>Power Management</option>
-<option value='Business Process Management'>Business Process Management</option>
-<option value='Consultancy Management'>Consultancy Management</option>
-<option value='Astrophysics'>Astrophysics</option>
-<option value='Fisheries Sciences'>Fisheries Sciences</option>
-<option value='Fashion Photography '>Fashion Photography </option>
-<option value='Design Management'>Design Management</option>
-<option value='Dental Surgery'>Dental Surgery</option>
-<option value='Radiotherapy'>Radiotherapy</option>
-<option value='Fashion Technology'>Fashion Technology</option>
-<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
-<option value='Aerospace Engineering'>Aerospace Engineering</option>
-<option value='Web designing'>Web designing</option>
-<option value='Agri Business Management'>Agri Business Management</option>
-<option value='Finance Management'>Finance Management</option>
-<option value='Fashion and Apparel Design'>Fashion and Apparel Design</option>
-<option value='Chartered Financial Analyst'>Chartered Financial Analyst</option>
-<option value='Jewllery Designing'>Jewllery Designing</option>
-<option value='Cyber Security & Ethical Hacking'>Cyber Security & Ethical Hacking</option>
-<option value='Tourism and Management'>Tourism and Management</option>
-<option value='Fashion Management'>Fashion Management</option>
-<option value='Pilot Training'>Pilot Training</option>
-<option value='Investment Management'>Investment Management</option>
-<option value='Food Processing Technology'>Food Processing Technology</option>
-<option value='Corporate Law'>Corporate Law</option>
-<option value='Software Engineering'>Software Engineering</option>
-<option value='Petroleum Engineering'>Petroleum Engineering</option>
-<option value='Business Economics'>Business Economics</option>
-<option value='Finance & Control'>Finance & Control</option>
-<option value='Prosthetics & Orthotics'>Prosthetics & Orthotics</option>
-<option value='Surgery'>Surgery</option>
-<option value='Health/Hospital Administration'>Health/Hospital Administration</option>
-<option value='Foreign Trade'>Foreign Trade</option>
-<option value='Airline and Airport Management'>Airline and Airport Management</option>
-<option value='Business Analytics'>Business Analytics</option>
-<option value='Animal Production & Management'>Animal Production & Management</option>
-<option value='Human Rights'>Human Rights</option>
-<option value='Corporate Social Responsibilty'>Corporate Social Responsibilty</option>
-<option value='Disaster Management'>Disaster Management</option>
-<option value='Planning'>Planning</option>
-<option value='Ayurveda'>Ayurveda</option>
-<option value='Energy and Environment'>Energy and Environment</option>
-<option value='Cardiac Care Technology'>Cardiac Care Technology</option>
-<option value='Botany'>Botany</option>
-<option value='Anaesthesiology'>Anaesthesiology</option>
-<option value='Ophthalmic Technology'>Ophthalmic Technology</option>
-<option value='Visual Arts'>Visual Arts</option>
-<option value='Administrative Law'>Administrative Law</option>
-<option value='Tourism Management'>Tourism Management</option>
-<option value='Tourism and Hotel Management'>Tourism and Hotel Management</option>
-<option value='Intellectual Property Law'>Intellectual Property Law</option>
-<option value='Tax Law'>Tax Law</option>
-<option value='Airport Management'>Airport Management</option>
-<option value='Urban and Rural Planning'>Urban and Rural Planning</option>
-<option value='Visual Merchandising'>Visual Merchandising</option>
-<option value='Respiratory Therapy '>Respiratory Therapy </option>
-<option value='Digital Marketing'>Digital Marketing</option>
-<option value='Catering Technology & Culinary Arts'>Catering Technology & Culinary Arts</option>
-<option value='Ancient History'>Ancient History</option>
-<option value='Event Management'>Event Management</option>
-<option value='Electronics and Communications Engineering'>Electronics and Communications Engineering</option>
-<option value='Data Analytics'>Data Analytics</option>
-<option value='Bank Management'>Bank Management</option>
-<option value='Plastic Engineering '>Plastic Engineering </option>
-<option value='Gemology'>Gemology</option>
-<option value='Neurophysiology Technology'>Neurophysiology Technology</option>
-<option value='Hospital Management'>Hospital Management</option>
-<option value='Electronics'>Electronics</option>
-<option value='Gynaecology and Obstetrics'>Gynaecology and Obstetrics</option>
-<option value='International Business'>International Business</option>
-<option value='Pharmaceutics'>Pharmaceutics</option>
-<option value='Game Designing and Development'>Game Designing and Development</option>
-<option value='Safety Management'>Safety Management</option>
-<option value='Immunology'>Immunology</option>
-<option value='Commercial Law'>Commercial Law</option>
-<option value='Co-operation'>Co-operation</option>
-<option value='Advertising Management'>Advertising Management</option>
-<option value='Pharmaceutical Analysis'>Pharmaceutical Analysis</option>
-<option value='Infrastructure Management'>Infrastructure Management</option>
-<option value='Medical-Surgical Nursing'>Medical-Surgical Nursing</option>
-<option value='Child Health Nursing'>Child Health Nursing</option>
-<option value='Artificial Intelligence'>Artificial Intelligence</option>
-<option value='Paediatric Nursing'>Paediatric Nursing</option>
-<option value='Medical Sociology'>Medical Sociology</option>
-<option value='Applied Management'>Applied Management</option>
-<option value='Information Management'>Information Management</option>
-<option value='Apparel Merchandising'>Apparel Merchandising</option>
-<option value='Brand Management'>Brand Management</option>
-<option value='Media Law'>Media Law</option>
-<option value='Telecommunications Management'>Telecommunications Management</option>
-<option value='Maritime Law'>Maritime Law</option>
-<option value='Environmental Law'>Environmental Law</option>
-<option value='Service Management'>Service Management</option>
-<option value='Applied Economics'>Applied Economics</option>
-<option value='Metallurgical Engineering'>Metallurgical Engineering</option>
-<option value='Food Technology'>Food Technology</option>
-<option value='Public Policy Management'>Public Policy Management</option>
-<option value='Biomechanics'>Biomechanics</option>
-<option value='Healthcare Management'>Healthcare Management</option>
-<option value='Animal Husbandry'>Animal Husbandry</option>
-<option value='Air and Space Law'>Air and Space Law</option>
-<option value='Consumer Law'>Consumer Law</option>
-<option value='Landscape Design'>Landscape Design</option>
-
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-1 d-flex justify-content-end align-items-center">
+  let courseNdIntitutionRow = document.createElement("div");
+  courseNdIntitutionRow.classList.add("row", "m-t-2");
+  courseNdIntitutionRow.innerHTML = `
+                   
+                          <div class="col-md">
+                            <div class="form-group">
+                              <label for="inputState"></label>
+                              <input type="text" id="${icourseCounter}" class="form-control icourse-to-teach" placeholder="Course to Teach">
+                            </div>
+                          </div>
+                          <div class="col-md">
+                            <div class="form-group">
+                              <label for="inputState"></label>
+                              <input type="text" id="${pinstituteCounter}" placeholder="Preffered Intitution" class="form-control pinstitute-to-teach">
+                            </div>
+                          </div>
+                           <div class="col-md-1 d-flex justify-content-end align-items-center">
                         <div class="delete-btn-wrap form-group d-flex justify-content-center align-items-center m-t-1">
                           <label for="jobTitle1"></label>
-                          <button onClick='deleteIntrestedC(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
-                        </div>
-                      </div>`;
-
-  IntrestedCourseWrap.appendChild(IntrestedCourseRow);
-
-  extraField.intrestedCourse.push(coursesCounter);
-
-  const iCoursesInput = document.querySelectorAll("iCourses");
-  newiCoursesInput = [...iCoursesInput];
-}
-let newiCoursesInput = [];
-
-function prefferedIntitutionFunc() {
-  let pfInsitutionCounter = `pfInstitute-${new Date().getMilliseconds()}`;
-
-  let prefferedIntitutionRow = document.createElement("div");
-  prefferedIntitutionRow.classList.add("row", "m-t-2");
-  prefferedIntitutionRow.innerHTML = ` <div class="col-md-1">
-                        <label for="inputEmail3" class="col-form-label m-t-2">Institution</label>
-                      </div>
-                      <div class="col-md">
-                        <div class="form-group">
-                          <label for="jobTitle1"></label>
-                          <select id="${pfInsitutionCounter}" class="form-control pfInstitution">
-                            <option selected>Select Institute</option>
-                            <option>...</option>
-                          </select>
+                          <button onClick='deleteCOINFunc(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
                         </div>
                       </div>
-                      <div class="col-md-1 d-flex justify-content-end align-items-center">
-                        <div class="delete-btn-wrap form-group d-flex justify-content-center align-items-center m-t-1">
-                          <label for="jobTitle1"></label>
-                          <button onClick='deletePFCourse(this)' class="btn btn-danger btn-sm delete-first-degree" type="button" id="${new Date().getTime()}">x</button>
-                        </div>
-                      </div>`;
+                    `;
 
-  prefferedIntitutionWrap.appendChild(prefferedIntitutionRow);
+  courseNdIntitutionWrap.appendChild(courseNdIntitutionRow);
+  extraField.courseNdInstitute[0].push(icourseCounter);
+  extraField.courseNdInstitute[1].push(pinstituteCounter);
 
-  extraField.prefferedInstitution.push(pfInsitutionCounter);
-
-    const pfInstituteInput = document.querySelectorAll(".pfInstitution");
-    newpfInstitute = [...pfInstituteInput];
+  const icourseInput = document.querySelectorAll("icourse-to-teach");
+  newIcourseInput = [...icourseInput];
+  const pIntitutionInput = document.querySelectorAll("pinstitute-to-teach");
+  newPIntitutionInput = [...pIntitutionInput];
 }
-let newpfInstitute = [];
+let newIcourseInput = [];
+let newPIntitutionInput = [];
 
 function certficationFunc() {
   let tcertificateCounter = `tCertificate-${new Date().getMilliseconds()}`;
@@ -1661,30 +1118,27 @@ function certficationFunc() {
   extraField.certificate[0].push(tcertificateCounter);
   extraField.certificate[1].push(yearCounter);
 
-   const tCertificateInput = document.querySelectorAll(".tCertificate-input");
-   newtCertificateInput = [...tCertificateInput];
+  const tCertificateInput = document.querySelectorAll(".tCertificate-input");
+  newtCertificateInput = [...tCertificateInput];
 
-   const yearInput = document.querySelectorAll(".cYear-input");
-   newcYearInput = [...yearInput];
+  const yearInput = document.querySelectorAll(".cYear-input");
+  newcYearInput = [...yearInput];
 }
 let newtCertificateInput = [];
 let newcYearInput = [];
 
 function researchExperienceFunc() {
-   let instituteCounter = `rInstitute-${new Date().getMilliseconds()}`;
-   let advisorCounter = `rAdvisor-${new Date().getMilliseconds()}`;
-   let startDateCounter = `rStartDate-${new Date().getMilliseconds()}`;
-   let endDateCounter = `rEndDate-${new Date().getMilliseconds()}`;
+  let instituteCounter = `rInstitute-${new Date().getMilliseconds()}`;
+  let advisorCounter = `rAdvisor-${new Date().getMilliseconds()}`;
+  let startDateCounter = `rStartDate-${new Date().getMilliseconds()}`;
+  let endDateCounter = `rEndDate-${new Date().getMilliseconds()}`;
 
   let researchExperienceRow = document.createElement("div");
   researchExperienceRow.classList.add("row", "m-t-2");
   researchExperienceRow.innerHTML = ` <div class="col-md">
                           <div class="form-group">
                             <label for="inputState"></label>
-                            <select id="${instituteCounter}" class="form-control rInstitution">
-                              <option selected>Name of Institute</option>
-                              <option>...</option>
-                            </select>
+                            <input type="text" id="${instituteCounter}" class="form-control rInstitution" placeholder="Name of Institute">
                           </div>
                         </div>
                         <div class="col-md">
@@ -1734,7 +1188,7 @@ function researchExperienceFunc() {
 let newrInstitutionInput = [];
 let newrYearInput = [];
 let newrStartDateInput = [];
-let newrEndDateInput = []
+let newrEndDateInput = [];
 
 function honorsAwardFunc() {
   let awardCounter = `hAward-${new Date().getMilliseconds()}`;
@@ -1796,10 +1250,10 @@ let newhGrantInput = [];
 let newhDateInput = [];
 
 function currentEmployerFunc() {
-let employerCounter = `cEmplyr-${new Date().getMilliseconds()}`;
-let roleCounter = `cRole-${new Date().getMilliseconds()}`;
-let startCounter = `ceStart-${new Date().getMilliseconds()}`;
-let endCounter = `ceEnd-${new Date().getMilliseconds()}`;
+  let employerCounter = `cEmplyr-${new Date().getMilliseconds()}`;
+  let roleCounter = `cRole-${new Date().getMilliseconds()}`;
+  let startCounter = `ceStart-${new Date().getMilliseconds()}`;
+  let endCounter = `ceEnd-${new Date().getMilliseconds()}`;
 
   let currentEmployerRow = document.createElement("div");
   currentEmployerRow.classList.add("row", "m-t-2");
@@ -1853,17 +1307,16 @@ let endCounter = `ceEnd-${new Date().getMilliseconds()}`;
   const ceEndInput = document.querySelectorAll(".ceEnd");
   newceEndInput = [...ceEndInput];
 }
-let newcEployerInput =[];
+let newcEployerInput = [];
 let newcRoleInput = [];
 let newceStartInput = [];
 let newceEndInput = [];
 
-
 function previousEmployerFunc() {
-let employerCounter = `pEmplyr-${new Date().getMilliseconds()}`;
-let roleCounter = `pRole-${new Date().getMilliseconds()}`;
-let startCounter = `peStart-${new Date().getMilliseconds()}`;
-let endCounter = `peEnd-${new Date().getMilliseconds()}`;
+  let employerCounter = `pEmplyr-${new Date().getMilliseconds()}`;
+  let roleCounter = `pRole-${new Date().getMilliseconds()}`;
+  let startCounter = `peStart-${new Date().getMilliseconds()}`;
+  let endCounter = `peEnd-${new Date().getMilliseconds()}`;
 
   let previousEmployerRow = document.createElement("div");
   previousEmployerRow.classList.add("row", "m-t-2");
@@ -1922,13 +1375,12 @@ let newpRoleInput = [];
 let newpeStartInput = [];
 let newpeEndInput = [];
 
-
 function refereeFunc() {
-let rfNameCounter = `rfName-${new Date().getMilliseconds()}`;
-let rlNameCounter = `rlName-${new Date().getMilliseconds()}`;
-let rpNumberCounter = `rpNumber-${new Date().getMilliseconds()}`;
-let rEmailCounter = `rEmail-${new Date().getMilliseconds()}`;
-let rrAddressCounter = `rrAddress-${new Date().getMilliseconds()}`;
+  let rfNameCounter = `rfName-${new Date().getMilliseconds()}`;
+  let rlNameCounter = `rlName-${new Date().getMilliseconds()}`;
+  let rpNumberCounter = `rpNumber-${new Date().getMilliseconds()}`;
+  let rEmailCounter = `rEmail-${new Date().getMilliseconds()}`;
+  let rrAddressCounter = `rrAddress-${new Date().getMilliseconds()}`;
 
   let refereeRow = document.createElement("div");
   refereeRow.classList.add("row", "m-t-3");
@@ -1997,9 +1449,8 @@ let newrEmailInput = [];
 let newrpNumberInput = [];
 let newrrAddressInput = [];
 
-
 function wesAieaFunc() {
-let wesAieaCounter = `wesAiea-${new Date().getMilliseconds()}`;
+  let wesAieaCounter = `wesAiea-${new Date().getMilliseconds()}`;
 
   let wesAieaRow = document.createElement("div");
   wesAieaRow.classList.add("row", "m-t-2");
@@ -2052,15 +1503,11 @@ let wesAieaCounter = `wesAiea-${new Date().getMilliseconds()}`;
 
     return console.log(tempWESAIEA);
   });
-
-  
-
 }
 let newWesAieaInput = [];
 
-
 function passportFunc() {
-let passportCounter = `passport-${new Date().getMilliseconds()}`;
+  let passportCounter = `passport-${new Date().getMilliseconds()}`;
 
   let passportRow = document.createElement("div");
   passportRow.classList.add("row", "m-t-2");
@@ -2086,40 +1533,36 @@ let passportCounter = `passport-${new Date().getMilliseconds()}`;
   const passportInput = document.querySelectorAll("passportInput");
   newPassportInput = [...passportInput];
 
-   extraField.passport.forEach((item) => {
-     console.log("passport: ", item);
-     $(`#${item}`).on("change", function () {
-       //get the file name
-       var fileName = $(this).val();
-       //replace the "Choose a file" label
-       $(this).next(".custom-file-label").html(fileName);
-     });
-   });
+  //  extraField.passport.forEach((item) => {
+  //    console.log("passport: ", item);
+  //    $(`#${item}`).on("change", function () {
+  //      //get the file name
+  //      var fileName = $(this).val();
+  //      //replace the "Choose a file" label
+  //      $(this).next(".custom-file-label").html(fileName);
+  //    });
+  //  });
 
-    extraField.passport.forEach((item) => {
-      console.log(item);
+  // extraField.passport.forEach((item) => {
+  //   console.log(item);
 
-      const input = document.querySelector(`#${item}`);
-      input.addEventListener("change", (e) => {
-        var file = e.target.files[0];
-        let reader = new FileReader();
-        reader.onload = (e) => {
-          let image = e.target.result;
-          // console.log(image);
-          tempPASS.push(image);
-        };
-        reader.readAsDataURL(file);
-      });
+  //   const input = document.querySelector(`#${item}`);
+  //   input.addEventListener("change", (e) => {
+  //     var file = e.target.files[0];
+  //     let reader = new FileReader();
+  //     reader.onload = (e) => {
+  //       let image = e.target.result;
+  //       // console.log(image);
+  //       tempPASS.push(image);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   });
 
-      return console.log(tempPASS);
-    });
-
-
+  //   return console.log(tempPASS);
+  //
+  // });
 }
 let newPassportInput = [];
-
-
-
 
 /* 
   ==================================================================
@@ -2137,31 +1580,30 @@ const countryOfResidenceValue = document.getElementsByClassName("countryR");
 const pAddress = document.getElementById("permanent-address");
 const phoneNumber = document.getElementById("phone-number");
 
+let tempFDegree = [[], [], [], []];
+let tempFDegree2 = [];
+let tempSDegree = [[], [], [], []];
+let tempSDegree2 = [];
+let tempPDegree = [[], [], [], []];
+let tempPDegree2 = [];
+let tempCertificate = [[], []];
+let tempCertificate2 = [];
+let tempCOIN = [[], []];
+let tempCOIN2 = [];
+let tempResearchE = [[], [], [], []];
+let tempResearchE2 = [];
+let tempHA = [[], [], [], []];
+let tempHA2 = [];
+let tempCEM = [[], [], [], []];
+let tempCEM2 = [];
+let tempPEM = [[], [], [], []];
+let tempPEM2 = [];
+let tempRFINFO = [[], [], [], [], []];
+let tempRFINFO2 = [];
+let tempWESAIEA = [];
+let tempPASS = [];
 
-
-
-  let tempFDegree = [[],[],[],[]];
-  let tempFDegree2 = []
-  let tempSDegree = [[],[],[],[]];
-  let tempSDegree2 = []
-  let tempPDegree = [[],[],[],[]];
-  let tempPDegree2 = []
-  let tempCertificate = [[],[]];
-  let tempCertificate2 = []
-  let tempResearchE = [[],[],[],[]];
-  let tempResearchE2 = [];
-  let tempHA = [[],[],[],[]];
-  let tempHA2 = [];
-  let tempCEM = [[], [], [], []];
-  let tempCEM2 = [];
-  let tempPEM = [[], [], [], []];
-  let tempPEM2 = [];
-  let tempRFINFO = [[], [], [], [], []];
-  let tempRFINFO2 = [];
-  let tempWESAIEA = [];
-  let tempPASS = [];
- 
-  // Gender selection function
+// Gender selection function
 const radioBtn = () => {
   let genderValue;
   if (document.getElementById("gridRadios1").checked) {
@@ -2199,8 +1641,7 @@ const SubmitFormHandler = () => {
     firstDegreeValues: [],
     secondDegreeValues: [],
     phdValues: [],
-    intrestedCourse: [],
-    prefferedIntitution: [],
+    courseNdIntitution: [],
     certificate: [],
     researchExperience: [],
     honorsAward: [],
@@ -2350,33 +1791,35 @@ const SubmitFormHandler = () => {
   */
 
   /* 
-  ========================================
-  Start: Get Intrested Course Input Values
-  ========================================
+  ================================================================
+  Start: Get Interested Course & Preffered Instution Input Values
+  ================================================================
   */
-  extraField.intrestedCourse.forEach((item) => {
+  extraField.courseNdInstitute[0].map((item) => {
     const values = document.getElementById(item).value;
-    return formValues.intrestedCourse.push(values);
+    return console.log(tempCOIN[0].push(["course", values]));
   });
-  /* 
-  =======================================
-  End: Get Intrested Course Input Values
-  =======================================
-  */
 
-  /* 
-  =======================================
-  Start: Get Preffered Institution Input Values
-  =======================================
-  */
-  extraField.prefferedInstitution.forEach((item) => {
+  // Year
+  extraField.courseNdInstitute[1].map((item) => {
     const values = document.getElementById(item).value;
-    return formValues.prefferedIntitution.push(values);
+    return console.log(tempCOIN[1].push(["Institution", values]));
+  });
+
+  for (let i = 0; i < tempCOIN[0].length; i++) {
+    tempCOIN.forEach((arr) => {
+      tempCOIN2.push(arr[i]);
+    });
+  }
+  const testCOIN = _.chunk(tempCOIN2, 2);
+  testCOIN.map((item) => {
+    let obj = Object.fromEntries(item);
+    return formValues.courseNdIntitution.push(obj);
   });
   /* 
-  =======================================
-  End: Get Preffered Institution Input Values
-  =======================================
+  ================================================================
+  End: Get Interested Course & Preffered Instution Input Values
+  ================================================================
   */
 
   /* 
@@ -2621,13 +2064,10 @@ const SubmitFormHandler = () => {
   =======================================
   */
 
-
-
   console.log("After submit : ", formValues);
 };
 const Submit = document.getElementById("submit");
 Submit.addEventListener("click", SubmitFormHandler);
-
 
 // Selecting the first wesAiea input
 $(`#wesAiea-001a`).on("change", function () {
@@ -2639,35 +2079,34 @@ $(`#wesAiea-001a`).on("change", function () {
 
 // Converting WesAiea to Array of byte
 const input = document.querySelector(`#wesAiea-001a`);
-  input.addEventListener("change", (e) => {
-     var file = e.target.files[0];
+input.addEventListener("change", (e) => {
+  var file = e.target.files[0];
   let reader = new FileReader();
   reader.onload = (e) => {
     let image = e.target.result;
     // console.log(image);
-    tempWESAIEA.push(image)
+    tempWESAIEA.push(image);
   };
   reader.readAsDataURL(file);
-  })
+});
 
+// Selecting the first passport input
+$(`#passport-001a`).on("change", function () {
+  //get the file name
+  var fileName = $(this).val();
+  //replace the "Choose a file" label
+  $(this).next(".custom-file-label").html(fileName);
+});
 
-  // Selecting the first passport input
-  $(`#passport-001a`).on("change", function () {
-    //get the file name
-    var fileName = $(this).val();
-    //replace the "Choose a file" label
-    $(this).next(".custom-file-label").html(fileName);
-  });
-
-  // Converting Passport to Array of byte
+// Converting Passport to Array of byte
 const passInput = document.querySelector(`#passport-001a`);
-  passInput.addEventListener("change", (e) => {
-    let file = e.target.files[0];
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      let image = e.target.result;
-      // console.log(image);
-      tempPASS.push(image);
-    };
-    reader.readAsDataURL(file);
-  });
+passInput.addEventListener("change", (e) => {
+  let file = e.target.files[0];
+  let reader = new FileReader();
+  reader.onload = (e) => {
+    let image = e.target.result;
+    // console.log(image);
+    tempPASS.push(image);
+  };
+  reader.readAsDataURL(file);
+});
